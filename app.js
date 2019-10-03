@@ -25,10 +25,16 @@ app.post("/random", (req, res) => {
             title: recipe.strMeal,
             category: recipe.strCategory,
             area: recipe.strArea,
-            instructions: recipe.strInstructions,
+            // instructions: recipe.strInstructions,
+
             image: recipe.strMealThumb,
             source: recipe.strSource
         }
+
+ 
+        randomRecipe["instructionsArray"] = recipe.strInstructions.split(/[\r\n]+/gm);
+  
+
 
         for (let i = 1; i < 21; i++) {
             let string = "strIngredient" + i;
@@ -51,10 +57,10 @@ app.post("/random", (req, res) => {
         }
 
 
-        // console.log(randomRecipe);
+        console.log(randomRecipe);
 
 
-        res.render("random-recipe", randomRecipe);
+        // res.render("random-recipe", randomRecipe);
     })
 })
 
