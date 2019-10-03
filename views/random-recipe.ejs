@@ -14,13 +14,20 @@
     <img class="image" src="<%= image %>" alt="">
     <h3><%= category %></h3>
     <h3><%= area %></h3>
+
+    <ul>
+        <% for (var i = 0; i < measureArray.length; i++) { %>
+        <li><%= measureArray[i] %> <%= ingredientArray[i] %></li>
+        <% } %>
+    </ul>
+
     <ul>
         <% for (var i = 0; i < instructions.length; i++) { %>
         <li><%= instructions[i] %></li>
         <% } %>
     </ul>
 
-    <a href="<%= source %>"><%= source %></a>
+    <a href="<%= source %>" target="_blank"><%= source %></a>
 </body>
 
 </html>

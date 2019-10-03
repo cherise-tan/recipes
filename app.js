@@ -12,15 +12,16 @@ app.get("/", (req, res) => {
 });
 
 app.post("/random", (req, res) => {
-    request("https://www.themealdb.com/api/json/v1/1/random.php", {json: true}, (error, response, body) => {
+    request("https://www.themealdb.com/api/json/v1/1/random.php", {
+        json: true
+    }, (error, response, body) => {
         if (error) {
             return console.log(error);
         }
 
         var recipe = body.meals[0];
 
-        var randomRecipe =
-        {
+        var randomRecipe = {
             id: recipe.idMeal,
             title: recipe.strMeal,
             category: recipe.strCategory,
@@ -30,25 +31,25 @@ app.post("/random", (req, res) => {
         }
 
         randomRecipe["instructions"] = recipe.strInstructions.split(/[\r\n]+/gm);
-  
-        for (let i = 1; i < 21; i++) {
-            let string = "strIngredient" + i;
-            if (recipe[string] === "") {
-                break;
-            }
-            else {
-                randomRecipe[string] = recipe[string];
-            }            
-        }
+
+        randomRecipe["ingredientArray"] = [];
 
         for (let i = 1; i < 21; i++) {
-            let string = "strMeasure" + i;
-            if (recipe[string] === "") {
-                break;
+            let ingredient = "strIngredient" + i;
+            if (recipe[ingredient] === "") {} else {
+                randomRecipe.ingredientArray.push(recipe[ingredient]);
             }
-            else {
-                randomRecipe[string] = recipe[string];
-            }            
+        }
+
+        randomRecipe["measureArray"] = [];
+
+        for (let i = 1; i < 21; i++) {
+            let measure = "strMeasure" + i;
+            if (recipe[measure] === "") {
+                break;
+            } else {
+                randomRecipe.measureArray.push(recipe[measure]);
+            }
         }
 
         res.render("random-recipe", randomRecipe);
