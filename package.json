@@ -1,0 +1,16 @@
+{
+  "name": "recipe-finder",
+  "version": "1.0.0",
+  "description": "An app designed to help find new recipe inspiration.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cherise Tan",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "request": "^2.88.0"
+  }
+}
