@@ -16,7 +16,7 @@ app.post("/random", (req, res) => {
         if (error) {
             return console.log(error);
         }
-        
+
         var recipe = body.meals[0];
 
         var randomRecipe =
@@ -51,10 +51,10 @@ app.post("/random", (req, res) => {
         }
 
 
-        console.log(randomRecipe);
+        // console.log(randomRecipe);
 
 
-        // res.render("random-meal", randomRecipe);
+        res.render("random-recipe", randomRecipe);
     })
 })
 
