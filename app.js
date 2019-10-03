@@ -16,7 +16,45 @@ app.post("/random", (req, res) => {
         if (error) {
             return console.log(error);
         }
-        console.log(body);
+        
+        var recipe = body.meals[0];
+
+        var randomRecipe =
+        {
+            id: recipe.idMeal,
+            title: recipe.strMeal,
+            category: recipe.strCategory,
+            area: recipe.strArea,
+            instructions: recipe.strInstructions,
+            image: recipe.strMealThumb,
+            source: recipe.strSource
+        }
+
+        for (let i = 1; i < 21; i++) {
+            let string = "strIngredient" + i;
+            if (recipe[string] === "") {
+                break;
+            }
+            else {
+                randomRecipe[string] = recipe[string];
+            }            
+        }
+
+        for (let i = 1; i < 21; i++) {
+            let string = "strMeasure" + i;
+            if (recipe[string] === "") {
+                break;
+            }
+            else {
+                randomRecipe[string] = recipe[string];
+            }            
+        }
+
+
+        console.log(randomRecipe);
+
+
+        // res.render("random-meal", randomRecipe);
     })
 })
 
