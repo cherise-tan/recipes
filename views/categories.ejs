@@ -1,6 +1,13 @@
 <%- include("partials/header") -%>
 
-<h1>These are the categories</h1>
+
+<div>
+    <% for (i = 0; i < categories.length; i++) { %>
+    <h3><%= categories[i].strCategory %></h3>
+    <img src=<%= categories[i].strCategoryThumb %> alt="category image">
+    <p><%= categories[i].strCategoryDescription %></p>
+    <% } %>
+</div>
 
 </body>
 

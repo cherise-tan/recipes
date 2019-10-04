@@ -12,11 +12,27 @@ app.get("/", (req, res) => {
 });
 
 app.get("/categories", (req, res) => {
-    res.render("categories");
+
+    request("https://www.themealdb.com/api/json/v1/1/categories.php", {
+        json: true
+    }, (error, response, body) => {
+        if (error) {
+            return console.log(error);
+        }
+
+        categories = body.categories;
+
+
+        res.render("categories", categories);
+    })
+
+
 })
 
 app.get("/random", (req, res) => {
-    request("https://www.themealdb.com/api/json/v1/1/random.php", {json: true}, (error, response, body) => {
+    request("https://www.themealdb.com/api/json/v1/1/random.php", {
+        json: true
+    }, (error, response, body) => {
         if (error) {
             return console.log(error);
         }
