@@ -2,7 +2,7 @@
 
 
 <div>
-    <% for (i = 0; i < categories.length; i++) { %>
+    <% for (var i = 0; i < categories.length; i++) { %>
     <a href="/categories/<%= categories[i].strCategory %>"><h3><%= categories[i].strCategory %></h3></a>
     <img src=<%= categories[i].strCategoryThumb %> alt="category image">
     <p><%= categories[i].strCategoryDescription %></p>
