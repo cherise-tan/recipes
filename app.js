@@ -22,11 +22,12 @@ app.get("/categories", (req, res) => {
 
         categories = body.categories;
 
-
         res.render("categories", categories);
     })
+})
 
-
+app.get("/categories/:category", (req, res) => {
+    console.log(req.params.category);
 })
 
 app.get("/random", (req, res) => {
