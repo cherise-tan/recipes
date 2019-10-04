@@ -38,42 +38,46 @@ app.get("/random", (req, res) => {
             return console.log(error);
         }
 
-        var recipe = body.meals[0];
-
-        var randomRecipe = {
-            id: recipe.idMeal,
-            title: recipe.strMeal,
-            category: recipe.strCategory,
-            area: recipe.strArea,
-            image: recipe.strMealThumb,
-            source: recipe.strSource
-        }
-
-        randomRecipe["instructions"] = recipe.strInstructions.split(/[\r\n]+/gm);
-
-        randomRecipe["ingredientArray"] = [];
-
-        for (let i = 1; i < 21; i++) {
-            let ingredient = "strIngredient" + i;
-            if (recipe[ingredient] === "") {} else {
-                randomRecipe.ingredientArray.push(recipe[ingredient]);
-            }
-        }
-
-        randomRecipe["measureArray"] = [];
-
-        for (let i = 1; i < 21; i++) {
-            let measure = "strMeasure" + i;
-            if (recipe[measure] === "") {
-                break;
-            } else {
-                randomRecipe.measureArray.push(recipe[measure]);
-            }
-        }
-
-        res.render("random-recipe", randomRecipe);
+        res.render("recipe", getRecipe(body.meals[0]));
     })
 })
+
+
+function getRecipe(recipe) {
+
+    var finalRecipe = {
+        id: recipe.idMeal,
+        title: recipe.strMeal,
+        category: recipe.strCategory,
+        area: recipe.strArea,
+        image: recipe.strMealThumb,
+        source: recipe.strSource
+    }
+
+    finalRecipe["instructions"] = recipe.strInstructions.split(/[\r\n]+/gm);
+
+    finalRecipe["ingredientArray"] = [];
+
+    for (let i = 1; i < 21; i++) {
+        let ingredient = "strIngredient" + i;
+        if (recipe[ingredient] === "") {} else {
+            finalRecipe.ingredientArray.push(recipe[ingredient]);
+        }
+    }
+
+    finalRecipe["measureArray"] = [];
+
+    for (let i = 1; i < 21; i++) {
+        let measure = "strMeasure" + i;
+        if (recipe[measure] === "") {
+            break;
+        } else {
+            finalRecipe.measureArray.push(recipe[measure]);
+        }
+    }
+
+    return finalRecipe;
+}
 
 app.listen(3000, (req, res) => {
     console.log("Listening on port 3000");
