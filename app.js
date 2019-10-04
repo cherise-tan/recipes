@@ -11,10 +11,12 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
-app.post("/random", (req, res) => {
-    request("https://www.themealdb.com/api/json/v1/1/random.php", {
-        json: true
-    }, (error, response, body) => {
+app.get("/categories", (req, res) => {
+    res.render("categories");
+})
+
+app.get("/random", (req, res) => {
+    request("https://www.themealdb.com/api/json/v1/1/random.php", {json: true}, (error, response, body) => {
         if (error) {
             return console.log(error);
         }
