@@ -1,0 +1,13 @@
+<%- include("partials/header") -%>
+
+
+<div>
+    <% for (i = 0; i < categoryRecipes.length; i++) { %>
+    <a href="/recipe/<%= categoryRecipes[i].idMeal %>"><h3><%= categoryRecipes[i].strMeal %></h3></a>
+    <img src=<%= categoryRecipes[i].strMealThumb %> alt="category image">
+    <% } %>
+</div>
+
+</body>
+
+</html>

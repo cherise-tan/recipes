@@ -27,7 +27,21 @@ app.get("/categories", (req, res) => {
 })
 
 app.get("/categories/:category", (req, res) => {
-    console.log(req.params.category);
+
+    var url = "https://www.themealdb.com/api/json/v1/1/filter.php?c=" + req.params.category;
+
+    request(url, {
+        json: true
+    }, (error, response, body) => {
+        if (error) {
+            return console.log(error);
+        }
+
+        categoryRecipes = body.meals;
+        console.log(categoryRecipes);
+
+        res.render("category-recipes", categoryRecipes);
+    })
 })
 
 app.get("/random", (req, res) => {
@@ -38,7 +52,9 @@ app.get("/random", (req, res) => {
             return console.log(error);
         }
 
-        res.render("recipe", getRecipe(body.meals[0]));
+        var randomRecipe = getRecipe(body.meals[0]);
+
+        res.render("recipe", randomRecipe);
     })
 })
 
